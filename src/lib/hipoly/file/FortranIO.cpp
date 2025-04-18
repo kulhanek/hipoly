@@ -611,6 +611,18 @@ char* CFortranIO::GetFormatOfSection(const CSmallString& section_name)
 
 //------------------------------------------------------------------------------
 
+char* CFortranIO::LoadFormatOfSection(void)
+{
+    if( FindNewSection() == NULL ) {
+        if( SilentError == false ) ES_ERROR("Unable to find new section!");
+        return(NULL);
+    }
+
+    return(PrepareAmber7Format(Line));
+}
+
+//------------------------------------------------------------------------------
+
 char* CFortranIO::GetNameOfSection(void)
 {
     bool empty;

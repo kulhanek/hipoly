@@ -85,6 +85,9 @@ public:
     */
     char* GetFormatOfSection(const CSmallString& section_name);
 
+    /// get format from the next line
+    char* LoadFormatOfSection(void);
+
     /// get name of current section
     /*! If current line is empty it is skipped. This occurs when previous
         section does not contain data.
