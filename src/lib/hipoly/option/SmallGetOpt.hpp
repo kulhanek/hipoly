@@ -139,7 +139,7 @@ public:
     bool ProcessAllOptions(void);
 
     /// this method is called for every option
-    virtual bool ProcessOption(const COption* p_opt);
+    virtual bool ProcessCOption(const COption* p_opt);
 
     /// this method is called for every program argument
     virtual bool ProcessArgument(const int index,const CSmallString& arg);

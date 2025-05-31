@@ -21,7 +21,6 @@
 
 #include <SmallGetOpt.hpp>
 #include <string.h>
-#include <ctype.h>
 
 //==============================================================================
 //------------------------------------------------------------------------------
@@ -435,7 +434,7 @@ bool CSmallGetOpt::ProcessAllOptions(void)
         const COption* p_opt = GetFullOpt();
         if( p_opt == NULL ) return(false);
         if( p_opt->OptID < 0 ) return(false);
-        if( ProcessOption(p_opt) == false ) return(false);
+        if( ProcessCOption(p_opt) == false ) return(false);
     }
 
     // process arguments
@@ -448,7 +447,7 @@ bool CSmallGetOpt::ProcessAllOptions(void)
 
 //------------------------------------------------------------------------------
 
-bool CSmallGetOpt::ProcessOption(const COption* p_opt)
+bool CSmallGetOpt::ProcessCOption(const COption* p_opt)
 {
     return(true);
 }

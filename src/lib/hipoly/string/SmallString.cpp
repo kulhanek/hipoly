@@ -579,7 +579,7 @@ bool CSmallString::IntToStr(int value,const char* p_format)
 
     if( Buffer ) free(Buffer);
 
-    if( (string == NULL)||(strcmp(string,"")==0) ) {
+    if( strcmp(string,"")==0 ) {
         LengthOfBuffer = 0;
         Buffer = NULL;
         return(false);
@@ -606,7 +606,7 @@ bool CSmallString::UIntToStr(unsigned int value,const char* p_format)
 
     if( Buffer ) free(Buffer);
 
-    if( (string == NULL)||(strcmp(string,"")==0) ) {
+    if( strcmp(string,"")==0 ) {
         LengthOfBuffer = 0;
         Buffer = NULL;
         return(false);
@@ -753,7 +753,7 @@ bool CSmallString::FloatToStr(float value,const char* p_format)
 
     if( Buffer ) free(Buffer);
 
-    if( (string == NULL)||(strcmp(string,"")==0) ) {
+    if( strcmp(string,"")==0 ) {
         LengthOfBuffer = 0;
         Buffer = NULL;
         return(false);
@@ -790,7 +790,7 @@ bool CSmallString::DoubleToStr(double value,const char* p_format)
 
     if( Buffer ) free(Buffer);
 
-    if( (string == NULL)||(strcmp(string,"")==0) ) {
+    if( strcmp(string,"")==0 ) {
         LengthOfBuffer = 0;
         Buffer = NULL;
         return(false);
