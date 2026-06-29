@@ -1226,7 +1226,7 @@ bool  CSmallString::operator!=(const AnsiString& string) const
 //------------------------------------------------------------------------------
 //==============================================================================
 
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
 
 CSmallString::CSmallString(const QString& string)
 {

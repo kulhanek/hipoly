@@ -2,7 +2,7 @@
 # HiPoLy CMake File
 # ==============================================================================
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.20 FATAL_ERROR)
 #SET(CMAKE_VERBOSE_MAKEFILE ON)
 PROJECT(HiPoLy)
 
@@ -59,16 +59,29 @@ ELSE(CMAKE_USE_PTHREADS_INIT)
     ENDIF(CMAKE_USE_WIN32_THREADS_INIT)
 ENDIF(CMAKE_USE_PTHREADS_INIT)
 
-# interaction with Qt5 ---------------------------
+# interaction with Qt5/Qt6 ---------------------------
 IF(TRY_QT_LIB)
-    FIND_PACKAGE(Qt5Core QUIET)
-    IF(Qt5Core_FOUND)
-        SET(HAVE_QT5 1)
-        ADD_DEFINITIONS(-DHAVE_QT5)
-        MESSAGE(STATUS "Qt5Core version: ${Qt5Core_VERSION}")
-    ELSE(Qt5Core_FOUND)
-        MESSAGE(STATUS "Qt5Core: not found")
-    ENDIF(Qt5Core_FOUND)
+    FIND_PACKAGE(Qt6Core QUIET)
+    IF(Qt6Core_FOUND)
+        set(CMAKE_CXX_STANDARD 17)
+        set(CMAKE_CXX_STANDARD_REQUIRED ON)
+        SET(HAVE_QT6 1)
+        ADD_DEFINITIONS(-DHAVE_QT6)
+        MESSAGE(STATUS "Qt6Core version: ${Qt6Core_VERSION}")
+        FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Core)
+        qt_standard_project_setup()
+        SET(QT_LIBS Qt6::Core)
+    ELSE(Qt6Core_FOUND)
+        FIND_PACKAGE(Qt5Core QUIET)
+        IF(Qt5Core_FOUND)
+            SET(HAVE_QT5 1)
+            ADD_DEFINITIONS(-DHAVE_QT5)
+            MESSAGE(STATUS "Qt5Core version: ${Qt5Core_VERSION}")
+            SET(QT_LIBS Qt5::Core)
+        ELSE(Qt5Core_FOUND)
+            MESSAGE(STATUS "Qt5Core: not found")
+        ENDIF(Qt5Core_FOUND)
+    ENDIF(Qt6Core_FOUND)
 ENDIF(TRY_QT_LIB)
 
 SET(SYSTEM_LIBS ${QT_LIBRARIES}
@@ -109,8 +122,8 @@ LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/lib)
 # ==============================================================================
 
 IF(NOT DEFINED COMPOSITE_PROJECT)
-    SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -std=c++11")
-    SET(CMAKE_CXX_FLAGS_DEBUG "-g -std=c++11 -Wall -Werror -pedantic-errors -pedantic -Wundef -Wno-long-long")
+    SET(CMAKE_CXX_FLAGS_RELEASE "-O2")
+    SET(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Werror -pedantic-errors -pedantic -Wundef -Wno-long-long")
     #SET(CMAKE_BUILD_TYPE Release)
     SET(CMAKE_BUILD_TYPE Debug)
 ENDIF(NOT DEFINED COMPOSITE_PROJECT)

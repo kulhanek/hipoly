@@ -110,9 +110,7 @@ ENDIF(HAVE_UUID_H)
 # create static library --------------------------------------------------------
 IF(LIBS_STATIC)
     ADD_LIBRARY(hipoly_static STATIC ${HIPOLY_SRC})
-    IF(Qt5Core_FOUND)
-        TARGET_LINK_LIBRARIES(hipoly_static Qt5:Core)
-    ENDIF(Qt5Core_FOUND)
+    TARGET_LINK_LIBRARIES(hipoly_static ${QT_LIBS})
     SET_TARGET_PROPERTIES(hipoly_static PROPERTIES
                             OUTPUT_NAME hipoly
                             CLEAN_DIRECT_OUTPUT 1)
@@ -122,11 +120,7 @@ ENDIF(LIBS_STATIC)
 IF(LIBS_SHARED)
     ADD_DEFINITIONS(-DHIPOLY_BUILDING_DLL)
     ADD_LIBRARY(hipoly_shared SHARED ${HIPOLY_SRC})
-    IF(Qt5Core_FOUND)
-        TARGET_LINK_LIBRARIES(hipoly_shared Qt5::Core ${SYSTEM_LIBS})
-    ELSE(Qt5Core_FOUND)
-        TARGET_LINK_LIBRARIES(hipoly_shared ${SYSTEM_LIBS})
-    ENDIF(Qt5Core_FOUND)
+    TARGET_LINK_LIBRARIES(hipoly_shared ${QT_LIBS} ${SYSTEM_LIBS})
 
     SET_TARGET_PROPERTIES(hipoly_shared PROPERTIES
                             OUTPUT_NAME hipoly

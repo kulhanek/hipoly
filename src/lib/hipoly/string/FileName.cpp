@@ -345,7 +345,7 @@ void CFileName::AbsolutizePath(const CFileName& base)
 //------------------------------------------------------------------------------
 //==============================================================================
 
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
 
 CFileName::CFileName(const QString& string)
     : CSmallString(string)

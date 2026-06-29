@@ -225,7 +225,7 @@ void CXMLElement::SetAttribute(const CSmallString& name,const CUUID& value)
 //------------------------------------------------------------------------------
 //==============================================================================
 
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
 void CXMLElement::SetAttribute(const CSmallString& name,const QString& value)
 {
     CXMLAttribute* p_attr = FindAttribute(name,true);
@@ -439,7 +439,7 @@ bool CXMLElement::GetAttribute(const CSmallString& name,CUUID& value)
 //------------------------------------------------------------------------------
 //==============================================================================
 
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
 bool CXMLElement::GetAttribute(const CSmallString& name,QString& value)
 {
     CXMLAttribute* p_attr = FindAttribute(name);

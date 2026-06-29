@@ -74,7 +74,7 @@ public:
     void SetAttribute(const CSmallString& name,const CSmallDate& value);
     void SetAttribute(const CSmallString& name,const CSmallTimeAndDate& value);
     void SetAttribute(const CSmallString& name,const CUUID& value);
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
     void SetAttribute(const CSmallString& name,const QString& value);
     void SetAttribute(const CSmallString& name,const QByteArray& value);
 #endif
@@ -92,7 +92,7 @@ public:
     bool GetAttribute(const CSmallString& name,CSmallDate& value);
     bool GetAttribute(const CSmallString& name,CSmallTimeAndDate& value);
     bool GetAttribute(const CSmallString& name,CUUID& value);
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
     bool GetAttribute(const CSmallString& name,QString& value);
     bool GetAttribute(const CSmallString& name,QByteArray& value);
 #endif

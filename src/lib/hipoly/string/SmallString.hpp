@@ -29,7 +29,7 @@
 #include "system.hpp"
 #endif
 
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
 #include <QString>
 #endif
 
@@ -386,7 +386,7 @@ public:
 #endif
 
 // QT5 support -----------------------------------------------------------------
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5) || defined(HAVE_QT6)
     /// constructor from QString
     CSmallString(const QString& string);
 
