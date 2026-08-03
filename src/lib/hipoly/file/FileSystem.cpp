@@ -402,7 +402,8 @@ bool CFileSystem::IsSymLink(const CSmallString& file)
     return(false);
 #else
     struct stat my_stat;
-    if( stat(file,&my_stat) != 0 ) {
+    # stat() follows symlinks - use lstat()
+    if( lstat(file,&my_stat) != 0 ) {
         return(false);
     }
     return( S_ISLNK(my_stat.st_mode) );
