@@ -395,6 +395,21 @@ bool CFileSystem::IsFile(const CSmallString& file)
 }
 
 //------------------------------------------------------------------------------
+        
+bool CFileSystem::IsSymLink(const CSmallString& file)
+{           
+#if defined _WIN32 || defined __CYGWIN__
+    return(false);
+#else
+    struct stat my_stat;
+    if( stat(file,&my_stat) != 0 ) {
+        return(false);
+    }
+    return( S_ISLNK(my_stat.st_mode) );
+#endif
+}
+
+//------------------------------------------------------------------------------
 
 bool CFileSystem::IsSocket(const CSmallString& file)
 {

@@ -79,6 +79,9 @@ public:
     /// is socket?
     static bool IsSocket(const CSmallString& file);
 
+    /// is symlink?
+    static bool IsSymLink(const CSmallString& file);
+
     // permisions --------------------------------------------------------------
     /// set posix mode
     static bool SetPosixMode(const CSmallString& file,int mode);
